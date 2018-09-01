@@ -5,7 +5,8 @@ Getting started
 ---------------
 Note: This Poc is done on Windows10 .
 Download [Vagrant](https://releases.hashicorp.com/vagrant/2.0.0/vagrant_2.0.0_x86_64.msi).
-Download [Vagrant Redhat Box] (https://gitlab.com/avinashsi/boxes/blob/master/puppet_rhel7.box)
+
+Download [Vagrant Redhat Box](https://gitlab.com/avinashsi/boxes/blob/master/puppet_rhel7.box)
 
 Install Vagrant and Restart Your system after Installation
 
