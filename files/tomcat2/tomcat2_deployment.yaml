@@ -1,22 +1,54 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: app2
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/vagrant/files/app_dir/application2/webapps/"
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tomcat1-deployment
+  name: tomcat2-deployment
   labels:
-    app: tomcat1-helloworld
+    app: tomcat2-helloworld
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tomcat1-helloworld
+      app: tomcat2-helloworld
   template:
     metadata:
       labels:
-        app: tomcat1-helloworld
+        app: tomcat2-helloworld
     spec:
+      volumes:
+         - name: app2
       containers:
         - name: tomcat1-helloworld
-          image: avinashsi/tomcat:8.053_R1
+          image: avinashsi/tomcat:8.053_R3
           imagePullPolicy: IfNotPresent 
           ports:
           - containerPort: 8080
+          volumeMounts:
+          - mountPath: "/home/tomcat/webapps/"
+            name: app2
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: tomcat1 
+spec:
+  type: NodePort    
+  ports:
+  - port: 32800
+    targetPort: 8080
+  selector:
+    app: tomcat2-helloworld
