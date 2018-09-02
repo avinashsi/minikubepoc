@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat1-deployment
+  labels:
+    app: tomcat1-helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat1-helloworld
+  template:
+    metadata:
+      labels:
+        app: tomcat1-helloworld
+    spec:
+      containers:
+        - name: tomcat1-helloworld
+          image: avinashsi/tomcat:8.053_R1
+          imagePullPolicy: IfNotPresent 
+          ports:
+          - containerPort: 8080

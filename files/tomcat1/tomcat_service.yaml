@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: tomcat1 
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: tomcat1-helloworld
