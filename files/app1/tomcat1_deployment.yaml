@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tomcat1-deployment
+  labels:
+    app: tomcat1-helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat1-helloworld
+  template:
+    metadata:
+      labels:
+        app: tomcat1-helloworld
+    spec:
+      containers:
+      - name: application1
+        image: avinashsi/tomcat:8.053_R2
+        imagePullPolicy: Always 
+        ports:
+          - name: tomcat1
+            containerPort: 8080
+        volumeMounts:
+          - mountPath: /home/tomcat/webapps/app/
+            name: mypvc
+      volumes:
+        - name: mypvc
+          hostPath:
+            path: /home/vagrant/files/app_dir/application1
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: tomcat-one 
+spec:
+  ports:
+  - port: 8080 
+    targetPort: 8080
+  selector:
+    app: tomcat1-helloworld

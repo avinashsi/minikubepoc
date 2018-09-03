@@ -11,7 +11,7 @@ ENV BUILD_VERSION b17
 ENV TOMCAT_MAJOR_VERSION 8
 ENV TOMCAT_MINOR_VERSION 8.0.53
 ENV JAVA_OPTS ""
-RUN yum install -y wget
+RUN yum install -y wget jq
 #ADD wget /usr/bin/wget
 #RUN chmod +x /usr/bin/wget
 
@@ -27,16 +27,17 @@ RUN rm /tmp/jdk-8u131-linux-x64.rpm
 
 
 ######Install Tomcat###############################
-RUN wget http://www.mirrorservice.org/sites/ftp.apache.org/tomcat/tomcat-9/v9.0.11/bin/apache-tomcat-9.0.11.zip 
+RUN wget http://apache.mirrors.nublue.co.uk/tomcat/tomcat-8/v8.0.53/bin/apache-tomcat-8.0.53.zip
 RUN yum install -y unzip
-RUN unzip apache-tomcat-9.0.11.zip
-RUN mv apache-tomcat-9.0.11 /home/tomcat
+RUN unzip apache-tomcat-8.0.53.zip
+RUN mv apache-tomcat-8.0.53 /home/tomcat
 RUN chmod 777 /home/tomcat/bin/*
-RUN rm -fr apache-tomcat-9.0.11.zip
+RUN rm -fr apache-tomcat-8.0.53.zip
 
 ######Deploy helloworld josn File ##################
 
-#RUN mkdir -p /home/tomcat/webapps/helloworld/
+RUN mkdir -p /home/tomcat/webapps/app
+RUN mkdir -p /scripts
 #ADD helloworld.json /home/tomcat/webapps/helloworld/helloworld.json
 
 #####################################################
@@ -45,8 +46,8 @@ ENV CATALINA_HOME /home/tomcat
 ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
 
 EXPOSE 8080
-VOLUME /home/tomcat/webapps/
-
+VOLUME /home/tomcat/webapps/app
+VOLUME /scripts
 ####################################################
 ENTRYPOINT /home/tomcat/bin/startup.sh && tail -f /home/tomcat/logs/catalina.out
 
