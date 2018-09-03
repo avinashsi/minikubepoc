@@ -24,11 +24,18 @@ data:
 
         server {
             listen 80;
+            
+            root /var/www/app/;
+            index reversehellowold.json;                
 
             location / {
                 proxy_pass         http://tomcat-one:8080/;
                 proxy_redirect     off;
             }
+            location /reversehello {
+                try_files $uri $uri/ /reversehellowold.json;
+            }
+        
         }
     }
 ---
@@ -43,6 +50,10 @@ spec:
   - name: nginx
     image: "avinashsi/nginx:1.14.0-1_R2"
     imagePullPolicy: IfNotPresent 
+    lifecycle:
+      postStart:
+        exec:
+          command: ["/bin/sh", "-c", "/opt/data_parse.sh"]
     ports:
     - containerPort: 80
       name: http
