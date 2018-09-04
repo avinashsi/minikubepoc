@@ -10,7 +10,7 @@ Download [Vagrant](https://releases.hashicorp.com/vagrant/2.0.0/vagrant_2.0.0_x8
 
 Download [Vagrant Redhat Box](https://gitlab.com/avinashsi/boxes/blob/master/puppet_rhel7.box)
 
-Download[Oracle virtualbox](https://download.virtualbox.org/virtualbox/5.1.30/VirtualBox-5.1.30-118389-Win.exe)
+Download [Oracle virtualbox](https://download.virtualbox.org/virtualbox/5.1.30/VirtualBox-5.1.30-118389-Win.exe)
 
 Install Vagrant and Virtual Box Restart Your system after Installation
 
