@@ -27,7 +27,7 @@ spec:
       volumes:
         - name: mypvc
           hostPath:
-            path: /home/vagrant/files/app_dir/application1
+            path: /home/vagrant/files/app_data/application1
 ---
 kind: Service
 apiVersion: v1
