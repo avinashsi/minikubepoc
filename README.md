@@ -247,17 +247,17 @@ Go to the browser on your system and type in the following url to access the app
 
 ```
 http://192.168.111.11:32080/app/helloworld.json
-
-![alt text](https://raw.githubusercontent.com/avinashsi/minikubepoc/master/Images/helloworld.png)
 ```
+![alt text](https://raw.githubusercontent.com/avinashsi/minikubepoc/master/Images/helloworld.png)
+
 Now lets try to access the reverse application which will revert the message in json files
 by going to the following url.
 
 ```
 http://192.168.111.11:32080/reversehello
+```
 ![alt text](https://raw.githubusercontent.com/avinashsi/minikubepoc/master/Images/reversehellowold.png)
 
-```
 This url is created by following configuration defined in ConfigMap
 
 ```
