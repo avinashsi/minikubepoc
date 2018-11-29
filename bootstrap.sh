@@ -28,7 +28,7 @@ yum install -y yum-utils device-mapper-persistent-data lvm2 epel-release wget
 yum groupinstall -y "Development Tools"
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum-config-manager --enable docker-ce-edge
-yum install -y docker-ce
+yum install -y docker-ce-18.06.1.ce-3.el7.x86_64
 #################################################################################
 
 ##Starting Libvirtd & Docker Servies#############################################
